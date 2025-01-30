@@ -15,7 +15,7 @@ function createWidget() {
       <div class="dot"></div>
     </div>
     <div class="inner-circle"></div>
-    <div class="phase">Click to start</div>
+    <div class="phase">Start</div>
   `;
   return div;
 }
@@ -83,7 +83,7 @@ function toggleAnimation(widget) {
     innerCircle.style.animation = "none";
     progress.style.transform = "rotate(0deg)";
     innerCircle.style.transform = "scale(0.8)";
-    phaseText.textContent = "Click to start";
+    phaseText.textContent = "Start";
   }
 }
 

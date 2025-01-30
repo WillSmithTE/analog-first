@@ -1,22 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
       body {
-        width: 200px;
-        padding: 10px;
-        font-family: Arial, sans-serif;
+        width: 220px;
+        margin: 0;
+        padding: 12px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: #ffffff;
       }
+
       button {
         width: 100%;
-        padding: 8px;
-        margin: 5px 0;
+        padding: 10px 16px;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+        background: #ffffff;
+        color: #374151;
+        font-size: 13px;
+        font-weight: 500;
         cursor: pointer;
+        transition: all 0.15s ease;
+        user-select: none;
+      }
+
+      button:hover {
+        background: #f9fafb;
+        border-color: #d1d5db;
+      }
+
+      button:active {
+        background: #f3f4f6;
+        transform: translateY(1px);
+      }
+
+      /* For dark mode support */
+      @media (prefers-color-scheme: dark) {
+        body {
+          background: #1f2937;
+        }
+        button {
+          background: #374151;
+          border-color: #4b5563;
+          color: #e5e7eb;
+        }
+        button:hover {
+          background: #4b5563;
+          border-color: #6b7280;
+        }
+        button:active {
+          background: #4b5563;
+        }
       }
     </style>
   </head>
   <body>
-    <button id="toggleWidget">Click to place/remove widget</button>
+    <button id="toggleWidget">Add or remove</button>
     <script src="popup.js"></script>
   </body>
 </html>
