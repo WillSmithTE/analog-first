@@ -1,7 +1,7 @@
 .breathing-widget {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   opacity: 0.7;
   transition: opacity 0.3s;
   z-index: 9999;
@@ -21,7 +21,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid rgba(52, 152, 219, 0.2);
+  border: 1.5px solid rgba(52, 152, 219, 0.2);
   box-sizing: border-box;
 }
 
@@ -30,17 +30,17 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
   border-top-color: #3498db;
 }
 
 .dot {
   position: absolute;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #3498db;
   border-radius: 50%;
-  top: -4px;
+  top: -3px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -57,7 +57,7 @@
 
 .phase {
   position: absolute;
-  font-size: 11px;
+  font-size: 8px;
   color: #3498db;
   font-family: Arial, sans-serif;
   text-align: center;
