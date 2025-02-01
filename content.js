@@ -179,13 +179,26 @@ class BreathingWidget {
       }
     };
 
+    const removeEventListeners = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("click", handleClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+
+    const handleEscape = (e) => {
+      if (e.key === "Escape") {
+        removeEventListeners();
+        this.remove();
+      }
+    };
+
     const handleClick = async (e) => {
       this.isPlacementMode = false;
       this.element.classList.remove("placement-mode");
       this.element.style.opacity = "0.3";
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("click", handleClick);
+
+      removeEventListeners();
 
       const hostname = window.location.hostname;
       const position = {
@@ -200,6 +213,7 @@ class BreathingWidget {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("scroll", handleScroll);
     document.addEventListener("click", handleClick);
+    document.addEventListener("keydown", handleEscape);
   }
 
   setupClickHandler() {
