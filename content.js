@@ -146,14 +146,25 @@ class BreathingWidget {
     let lastMouseX = 0;
     let lastMouseY = 0;
 
+    const constrainToViewport = (x, y) => {
+      const maxX = document.documentElement.scrollWidth - WIDGET_SIZE_PX * 2;
+      const maxY = document.documentElement.scrollHeight - WIDGET_SIZE_PX * 2;
+
+      return {
+        x: Math.max(0, Math.min(x, maxX)),
+        y: Math.max(0, Math.min(y, maxY)),
+      };
+    };
+
     const updatePosition = () => {
       const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
       const scrollY = window.pageYOffset || document.documentElement.scrollTop;
 
-      this.setPosition(
-        lastMouseX + scrollX - WIDGET_SIZE_PX,
-        lastMouseY + scrollY - WIDGET_SIZE_PX
-      );
+      const rawX = lastMouseX + scrollX - WIDGET_SIZE_PX;
+      const rawY = lastMouseY + scrollY - WIDGET_SIZE_PX;
+
+      const { x, y } = constrainToViewport(rawX, rawY);
+      this.setPosition(x, y);
     };
 
     const handleMouseMove = (e) => {
