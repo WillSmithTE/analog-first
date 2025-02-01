@@ -1,5 +1,3 @@
-console.debug("in content.js");
-
 const ANIMATION_DURATION_MS = 4000;
 const WIDGET_SIZE_PX = 20;
 

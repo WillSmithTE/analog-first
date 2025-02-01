@@ -1,9 +1,11 @@
 {
-  "name": "Analog First",
+  "name": "Breathe In",
   "version": "1.0",
   "manifest_version": 3,
-  "description": "Add a box breathing widget to any website",
+  "description": "Improve your downtime with a portable breathing widget on every website",
   "permissions": ["storage", "activeTab"],
+  "host_permissions": [],
+  "optional_host_permissions": ["<all_urls>"],
   "action": {
     "default_popup": "popup.html"
   },
