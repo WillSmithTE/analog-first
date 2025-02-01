@@ -15,3 +15,13 @@ document.getElementById("toggleWidget").addEventListener("click", async () => {
 
   window.close();
 });
+
+// Update button text when popup opens
+document.addEventListener("DOMContentLoaded", async () => {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const hostname = new URL(tab.url).hostname;
+  const widgetData = await chrome.storage.local.get(hostname);
+
+  const button = document.getElementById("toggleWidget");
+  button.textContent = widgetData[hostname] ? "Remove" : "Add";
+});
