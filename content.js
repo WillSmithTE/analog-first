@@ -143,8 +143,29 @@ class BreathingWidget {
     this.element.classList.add("placement-mode");
     this.element.style.opacity = "0.8";
 
+    let lastMouseX = 0;
+    let lastMouseY = 0;
+
+    const updatePosition = () => {
+      const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+      this.setPosition(
+        lastMouseX + scrollX - WIDGET_SIZE_PX,
+        lastMouseY + scrollY - WIDGET_SIZE_PX
+      );
+    };
+
     const handleMouseMove = (e) => {
-      this.setPosition(e.clientX - WIDGET_SIZE_PX, e.clientY - WIDGET_SIZE_PX);
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      updatePosition();
+    };
+
+    const handleScroll = () => {
+      if (this.isPlacementMode) {
+        updatePosition();
+      }
     };
 
     const handleClick = async (e) => {
@@ -152,6 +173,7 @@ class BreathingWidget {
       this.element.classList.remove("placement-mode");
       this.element.style.opacity = "0.3";
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("scroll", handleScroll);
       document.removeEventListener("click", handleClick);
 
       const hostname = window.location.hostname;
@@ -165,6 +187,7 @@ class BreathingWidget {
     };
 
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("scroll", handleScroll);
     document.addEventListener("click", handleClick);
   }
 
