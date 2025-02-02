@@ -5,19 +5,13 @@ document.getElementById("toggleWidget").addEventListener("click", async () => {
 
   // I'd rather just get permissions then go to placement mode straight away, but can't cause popup closes instantly
   // Open issue: https://issues.chromium.org/issues/41452827
-  const hasPermission = await chrome.permissions.contains({
+  const granted = await chrome.permissions.request({
     origins: [origin + "/*"],
   });
 
-  if (!hasPermission) {
-    const granted = await chrome.permissions.request({
-      origins: [origin + "/*"],
-    });
-
-    if (!granted) {
-      console.debug("Permission denied");
-      return;
-    }
+  if (!granted) {
+    console.debug("Permission denied");
+    return;
   }
 
   const widgetData = await chrome.storage.local.get(hostname);
@@ -30,7 +24,6 @@ document.getElementById("toggleWidget").addEventListener("click", async () => {
     console.debug("enabling placement mode");
     chrome.tabs.sendMessage(tab.id, { action: "enablePlacement" });
   }
-
   window.close();
 });
 
