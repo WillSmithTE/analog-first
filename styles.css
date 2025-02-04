@@ -5,6 +5,9 @@
   opacity: 0.7;
   transition: opacity 0.3s;
   z-index: 9999;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
 }
 
 .breathing-widget:hover {
